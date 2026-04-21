@@ -72,6 +72,7 @@
         .nav-links {
             display: flex;
             gap: 40px;
+            align-items: center;
         }
 
         .nav-links a {
@@ -85,6 +86,30 @@
         }
 
         .nav-links a:hover { opacity: 1; color: var(--primary); }
+
+        .lang-toggle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03);
+            color: #fff;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+            opacity: 0.8;
+        }
+
+        .lang-toggle:hover {
+            opacity: 1;
+            color: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 0 18px rgba(218, 32, 90, 0.18);
+        }
 
         /* Hero Section */
         .hero {
@@ -1110,9 +1135,10 @@
     <nav>
         <div class="nav-logo" style="cursor: pointer;">RUNZHE MA</div>
         <div class="nav-links">
-            <a href="#about">ABOUT</a>
-            <a href="#work">WORK</a>
-            <a href="#contact">CONTACT</a>
+            <a href="#about" id="nav-about">ABOUT</a>
+            <a href="#work" id="nav-work">WORK</a>
+            <a href="#contact" id="nav-contact">CONTACT</a>
+            <button class="lang-toggle" id="lang-toggle" aria-label="Switch language" title="Switch language">中</button>
         </div>
     </nav>
 
@@ -1123,7 +1149,7 @@
         <div class="hero-content">
             <h1>RUNZHE MA</h1>
             <div class="typewriter" id="typewriter"></div>
-            <a href="#about" class="btn-explore">Explore</a>
+            <a href="#about" class="btn-explore" id="hero-explore">Explore</a>
         </div>
     </section>
 
@@ -1141,21 +1167,21 @@
 
         <div class="about-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px;">
             <div class="glass-card" style="padding: 20px;">
-                <p style="font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.5;">TYPE</p>
+                <p id="label-type" style="font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.5;">TYPE</p>
                 <p id="m-time" style="font-weight: bold;">--</p>
             </div>
             <div class="glass-card" style="padding: 20px;">
-                <p style="font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.5;">MY ROLE</p>
+                <p id="label-role" style="font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.5;">MY ROLE</p>
                 <p id="m-role" style="font-weight: bold;">--</p>
             </div>
             <div class="glass-card" style="padding: 20px;">
-                <p style="font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.5;">LINKS</p>
+                <p id="label-links" style="font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.5;">LINKS</p>
                 <div id="m-links" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 15px;"></div>
             </div>
         </div>
 
         <div class="glass-card detail-section">
-            <h3 class="detail-section-title">Project Info</h3>
+            <h3 id="project-info-title" class="detail-section-title">Project Info</h3>
             <div id="m-content" class="detail-body"></div>
         </div>
 
@@ -1165,73 +1191,73 @@
 </div>
 
     <div id="resume-modal">
-    <button class="modal-close" onclick="closeResumeModal()">CLOSE</button>
+    <button id="resume-close-btn" class="modal-close" onclick="closeResumeModal()">CLOSE</button>
     <div class="modal-body container">
         <div class="detail-hero">
             <div>
-                <p class="detail-kicker">Resume</p>
+                <p id="resume-kicker" class="detail-kicker">Resume</p>
                 <h1 class="resume-name">Runzhe Ma</h1>
-                <p class="resume-role">Interaction Designer / UX Designer</p>
+                <p id="resume-role-text" class="resume-role">Interaction Designer / UX Designer</p>
             </div>
         </div>
         <div class="resume-sheet">
             <div class="resume-topbar">
                 <div>
-                    <div class="resume-entry-title">Professional Statement</div>
-                    <p>I am an interaction designer with a multidisciplinary background spanning UX design, coding, AI-assisted workflows, and digital product thinking. I enjoy turning complex systems into clear user experiences and combining design sensitivity with practical execution.</p>
+                    <div id="resume-statement-title" class="resume-entry-title">Professional Statement</div>
+                    <p id="resume-statement-body">I am an interaction designer with a multidisciplinary background spanning UX design, coding, AI-assisted workflows, and digital product thinking. I enjoy turning complex systems into clear user experiences and combining design sensitivity with practical execution.</p>
                 </div>
                 <div class="resume-contact">
-                    <div>Sydney, Australia</div>
-                    <div>USYD Graduate</div>
-                    <div>Interaction Design / Design Computing</div>
+                    <div id="resume-contact-1">Sydney, Australia</div>
+                    <div id="resume-contact-2">USYD Graduate</div>
+                    <div id="resume-contact-3">Interaction Design / Design Computing</div>
                 </div>
             </div>
             <div class="resume-grid">
                 <div>
                     <div class="resume-section">
-                        <h3>Education</h3>
+                        <h3 id="resume-education-title">Education</h3>
                         <div class="resume-entry">
-                            <div class="resume-entry-title">Master of Interaction Design — The University of Sydney</div>
-                            <div class="resume-entry-meta">Sydney, Australia</div>
-                            <p>Focused on interaction systems, service thinking, and human-centered digital experiences across academic and project-based practice.</p>
+                            <div id="resume-edu-1-title" class="resume-entry-title">Master of Interaction Design — The University of Sydney</div>
+                            <div id="resume-edu-1-meta" class="resume-entry-meta">Sydney, Australia</div>
+                            <p id="resume-edu-1-desc">Focused on interaction systems, service thinking, and human-centered digital experiences across academic and project-based practice.</p>
                         </div>
                         <div class="resume-entry">
-                            <div class="resume-entry-title">Bachelor of Design Computing — The University of Sydney</div>
-                            <div class="resume-entry-meta">Sydney, Australia</div>
-                            <p>Built a foundation in UX, creative technology, digital making, and multidisciplinary design methods.</p>
+                            <div id="resume-edu-2-title" class="resume-entry-title">Bachelor of Design Computing — The University of Sydney</div>
+                            <div id="resume-edu-2-meta" class="resume-entry-meta">Sydney, Australia</div>
+                            <p id="resume-edu-2-desc">Built a foundation in UX, creative technology, digital making, and multidisciplinary design methods.</p>
                         </div>
                     </div>
                     <div class="resume-section">
-                        <h3>Selected Experience</h3>
+                        <h3 id="resume-experience-title">Selected Experience</h3>
                         <div class="resume-entry">
-                            <div class="resume-entry-title">AI-assisted Design and Workflow Practice</div>
-                            <div class="resume-entry-meta">Research, prototyping, content systems, coding support</div>
+                            <div id="resume-exp-1-title" class="resume-entry-title">AI-assisted Design and Workflow Practice</div>
+                            <div id="resume-exp-1-meta" class="resume-entry-meta">Research, prototyping, content systems, coding support</div>
                             <ul class="resume-bullets">
-                                <li>Use AI tools to support ideation, workflow structuring, summarisation, design iteration, and technical troubleshooting.</li>
-                                <li>Combine design judgment with coding, prompting, and system thinking to improve both efficiency and final quality.</li>
-                                <li>Translate abstract concepts into clearer user-facing experiences across portfolio, research, and interactive projects.</li>
+                                <li id="resume-exp-1-b1">Use AI tools to support ideation, workflow structuring, summarisation, design iteration, and technical troubleshooting.</li>
+                                <li id="resume-exp-1-b2">Combine design judgment with coding, prompting, and system thinking to improve both efficiency and final quality.</li>
+                                <li id="resume-exp-1-b3">Translate abstract concepts into clearer user-facing experiences across portfolio, research, and interactive projects.</li>
                             </ul>
                         </div>
                     </div>
                     <div class="resume-section">
-                        <h3>Selected Projects</h3>
+                        <h3 id="resume-projects-title">Selected Projects</h3>
                         <div class="resume-entry">
-                            <div class="resume-entry-title">Songdio</div>
-                            <p>Implementation-focused product and portfolio work spanning web, mobile, and visual presentation of multimodal AI music interaction.</p>
+                            <div id="resume-proj-1-title" class="resume-entry-title">Songdio</div>
+                            <p id="resume-proj-1-desc">Implementation-focused product and portfolio work spanning web, mobile, and visual presentation of multimodal AI music interaction.</p>
                         </div>
                         <div class="resume-entry">
-                            <div class="resume-entry-title">Coomo Wellness</div>
-                            <p>Companion-style sound environment concept exploring emotional healing, gentle interaction, and mobile-first experience design.</p>
+                            <div id="resume-proj-2-title" class="resume-entry-title">Coomo Wellness</div>
+                            <p id="resume-proj-2-desc">Companion-style sound environment concept exploring emotional healing, gentle interaction, and mobile-first experience design.</p>
                         </div>
                         <div class="resume-entry">
-                            <div class="resume-entry-title">University Projects</div>
-                            <p>PeriodGuard, Sonair Assistant, and SKYDREAMER — projects spanning health tech, AI companions, VR preparation systems, and service-oriented interaction design.</p>
+                            <div id="resume-proj-3-title" class="resume-entry-title">University Projects</div>
+                            <p id="resume-proj-3-desc">PeriodGuard, Sonair Assistant, and SKYDREAMER — projects spanning health tech, AI companions, VR preparation systems, and service-oriented interaction design.</p>
                         </div>
                     </div>
                 </div>
                 <div>
                     <div class="resume-section">
-                        <h3>Capabilities</h3>
+                        <h3 id="resume-capabilities-title">Capabilities</h3>
                         <div class="resume-tags">
                             <span class="tag">Interaction Design</span>
                             <span class="tag">UX Strategy</span>
@@ -1251,18 +1277,18 @@
                         </div>
                     </div>
                     <div class="resume-section">
-                        <h3>What I Bring</h3>
+                        <h3 id="resume-bring-title">What I Bring</h3>
                         <ul class="resume-bullets">
-                            <li>Strong ability to move between concept development, interface design, and implementation detail.</li>
-                            <li>Comfort working with both human-centered design questions and technical workflows.</li>
-                            <li>Experience using AI not just for speed, but as a structured design and research support tool.</li>
-                            <li>Attention to clarity, interaction quality, and how systems are perceived by real users.</li>
+                            <li id="resume-bring-b1">Strong ability to move between concept development, interface design, and implementation detail.</li>
+                            <li id="resume-bring-b2">Comfort working with both human-centered design questions and technical workflows.</li>
+                            <li id="resume-bring-b3">Experience using AI not just for speed, but as a structured design and research support tool.</li>
+                            <li id="resume-bring-b4">Attention to clarity, interaction quality, and how systems are perceived by real users.</li>
                         </ul>
                     </div>
                     <div class="resume-section">
-                        <h3>Resume File</h3>
-                        <p>If needed, you can still open the original document file directly.</p>
-                        <p><a href="Runzhe%20MA-Resume%20final.docx" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none; border-bottom: 1px solid var(--primary);">Open original resume document</a></p>
+                        <h3 id="resume-file-title">Resume File</h3>
+                        <p id="resume-file-desc">If needed, you can still open the original document file directly.</p>
+                        <p><a id="resume-file-link" href="Runzhe%20MA-Resume%20final.docx" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none; border-bottom: 1px solid var(--primary);">Open original resume document</a></p>
                     </div>
                 </div>
             </div>
@@ -1271,7 +1297,7 @@
 </div>
 
     <div class="container" id="about">
-        <h2 class="section-title">ABOUT <span style="color: var(--primary);">ME</span></h2>
+        <h2 class="section-title" id="section-about-title">ABOUT <span style="color: var(--primary);">ME</span></h2>
         <div class="about-grid">
             <aside class="profile-sticky">
 <div class="avatar">
@@ -1279,9 +1305,9 @@
     <img src="JamesHover.image" class="photo-hover" alt="James Hover">
 </div>
                 <h3 style="font-size: 1.8rem; margin-bottom: 5px;">Runzhe Ma (James)</h3>
-                <p style="opacity: 0.6; margin-bottom: 14px; font-family: var(--font-mono);">Master of Interaction Design @ USYD<br>Bachelor of Design Computing @ USYD</p>
+                <p id="about-degree-text" style="opacity: 0.6; margin-bottom: 14px; font-family: var(--font-mono);">Master of Interaction Design @ USYD<br>Bachelor of Design Computing @ USYD</p>
                 <div style="display: flex; align-items: center; justify-content: flex-start;">
-                    <button class="resume-trigger" onclick="openResumeModal()">Resume</button>
+                    <button class="resume-trigger" onclick="openResumeModal()" id="resume-trigger-btn">Resume</button>
                 </div>
                 <div class="skills-box">
                     <span class="tag">Figma</span> <span class="tag">JavaScript</span>
@@ -1301,27 +1327,27 @@
             
             <main>
 <p style="font-size: 1.1rem; line-height: 1.8; color: #ccc; margin-bottom: 40px; max-width: 800px;">
-    <strong style="color: #fff; font-weight: 700;">Interaction Design and Electric Arts Master’s candidate at USYD</strong>, 
+    <span id="about-intro-text"><strong style="color: #fff; font-weight: 700;">Interaction Design and Electric Arts Master’s candidate at USYD</strong>, 
     specializing in intelligent, user-centered products. I bridge 
     <span style="color: var(--primary); font-weight: 700;">UI/UX, AI product management, and XR development</span> 
-    to turn complex tech into seamless experiences. Having led end-to-end lifecycles for AI music and health platforms, I thrive on emerging technologies to build solutions that align human needs with business goals. 
+    to turn complex tech into seamless experiences. Having led end-to-end lifecycles for AI music and health platforms, I thrive on emerging technologies to build solutions that align human needs with business goals.</span>
 </p>
                 <div class="timeline-item">
-                    <h4 style="color: var(--primary); font-size: 1.2rem;">Hangzhou Xin Ying Tech | AI Product Intern</h4>
-                    <p style="font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.5;">DEC 2025 - Mar 2026</p>
-                    <p style="margin-top: 15px; color: #ccc;">Led the end-to-end UX design and front-end development of AI music and music therapy products, conducting market research, defining user needs, and delivering responsive web interfaces for both commercial and government projects.</p>
+                    <h4 id="timeline-1-title" style="color: var(--primary); font-size: 1.2rem;">Hangzhou Xin Ying Tech | AI Product Intern</h4>
+                    <p id="timeline-1-date" style="font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.5;">DEC 2025 - Mar 2026</p>
+                    <p id="timeline-1-desc" style="margin-top: 15px; color: #ccc;">Led the end-to-end UX design and front-end development of AI music and music therapy products, conducting market research, defining user needs, and delivering responsive web interfaces for both commercial and government projects.</p>
                 </div>
 
                 <div class="timeline-item">
-                    <h4 style="color: var(--primary); font-size: 1.2rem;">CRCC Bridge Engineering | Project Assistant</h4>
-                    <p style="font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.5;">OCT 2025 - DEC 2025</p>
-                    <p style="margin-top: 15px; color: #ccc;">Managed marketing data analysis and reporting, coordinated weekly business activities, and supported the department head in preparing mid-year performance reports.</p>
+                    <h4 id="timeline-2-title" style="color: var(--primary); font-size: 1.2rem;">CRCC Bridge Engineering | Project Assistant</h4>
+                    <p id="timeline-2-date" style="font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.5;">OCT 2025 - DEC 2025</p>
+                    <p id="timeline-2-desc" style="margin-top: 15px; color: #ccc;">Managed marketing data analysis and reporting, coordinated weekly business activities, and supported the department head in preparing mid-year performance reports.</p>
                 </div>
 
                 <div class="timeline-item">
-                    <h4 style="color: var(--primary); font-size: 1.2rem;">Event Host & Volunteer| ADP Center</h4>
-                    <p style="font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.5;">Feb 2023 - Nov 2023</p>
-                    <p style="margin-top: 15px; color: #ccc;">Hosted and facilitated student events and orientation programs, supporting over 100 first-year students in their transition to university life.</p>
+                    <h4 id="timeline-3-title" style="color: var(--primary); font-size: 1.2rem;">Event Host & Volunteer| ADP Center</h4>
+                    <p id="timeline-3-date" style="font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.5;">Feb 2023 - Nov 2023</p>
+                    <p id="timeline-3-desc" style="margin-top: 15px; color: #ccc;">Hosted and facilitated student events and orientation programs, supporting over 100 first-year students in their transition to university life.</p>
                 </div>
             </main>
         </div>
@@ -1329,15 +1355,15 @@
 
     <div class="container" id="work">
     
-    <h2 class="section-title">FEATURED <span style="color: var(--primary);">WORK</span></h2>
-    <h3 style="font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 4px; opacity: 0.5; margin-bottom: 30px; text-transform: uppercase;">Implementation Projects</h3>
+    <h2 class="section-title" id="section-work-title">FEATURED <span style="color: var(--primary);">WORK</span></h2>
+    <h3 id="implementation-title" style="font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 4px; opacity: 0.5; margin-bottom: 30px; text-transform: uppercase;">Implementation Projects</h3>
 <div class="work-grid"> 
     <div class="project-card" onclick="openModal('songdio')">
     <div class="project-bg" style="background-image: url('SongdioCover.png');"></div>
     <div class="project-info">
         <span class="tag" style="background: var(--primary); border:none; width: fit-content;">AI & MUSIC</span>
         <h3 style="margin-top: 15px; font-size: 1.8rem;">Songdio</h3>
-        <p style="opacity: 0.8; font-size: 0.9rem;">Redesigning a dynamic, bold interface for multimodal music creation</p>
+        <p id="songdio-card-desc" style="opacity: 0.8; font-size: 0.9rem;">Redesigning a dynamic, bold interface for multimodal music creation</p>
     </div>
 </div>
 
@@ -1346,13 +1372,13 @@
     <div class="project-info">
         <span class="tag" style="background: var(--primary); border:none; width: fit-content;">AI & Voice</span>
         <h3 style="margin-top: 15px; font-size: 1.8rem;">Coomo</h3>
-        <p style="opacity: 0.8; font-size: 0.9rem;">Companion-style interactive software that emphasizes emotional healing</p>
+        <p id="coomo-card-desc" style="opacity: 0.8; font-size: 0.9rem;">Companion-style interactive software that emphasizes emotional healing</p>
     </div>
 </div>
 </div>
 
 <div class="container" id="university">
-    <h3 style="font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 4px; opacity: 0.5; margin-bottom: 30px; text-transform: uppercase;">University Projects</h3>
+    <h3 id="university-title" style="font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 4px; opacity: 0.5; margin-bottom: 30px; text-transform: uppercase;">University Projects</h3>
     <div class="uni-carousel-shell">
         <button class="uni-nav-arrow left" onclick="rotateUniCarousel(-1)" aria-label="Previous university project">&#8592;</button>
         <button class="uni-nav-arrow right" onclick="rotateUniCarousel(1)" aria-label="Next university project">&#8594;</button>
@@ -1361,19 +1387,19 @@
             <div class="uni-card" onclick="openModal('perioguard')" style="cursor: pointer;">
                 <span class="tag" style="width: fit-content;">Health Tech</span>
                 <h4 style="margin-top: 10px; font-size: 1.2rem;">PeriodGuard</h4>
-                <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 5px;">Smart period-care support system with product and spatial planning.</p>
+                <p id="perioguard-card-desc" style="opacity: 0.5; font-size: 0.8rem; margin-top: 5px;">Smart period-care support system with product and spatial planning.</p>
             </div>
             
             <div class="uni-card" onclick="openModal('sonair')" style="cursor: pointer;">
                 <span class="tag" style="width: fit-content;">AI Assistant</span>
                 <h4 style="margin-top: 10px; font-size: 1.2rem;">Sonair Assistant</h4>
-                <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 5px;">Voice-led support experience for assisted daily interaction.</p>
+                <p id="sonair-card-desc" style="opacity: 0.5; font-size: 0.8rem; margin-top: 5px;">Voice-led support experience for assisted daily interaction.</p>
             </div>
 
             <div class="uni-card" onclick="openModal('skydreamer')" style="cursor: pointer;">
                 <span class="tag" style="width: fit-content;">VR Experience</span>
                 <h4 style="margin-top: 10px; font-size: 1.2rem;">SKYDREAMER</h4>
-                <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 5px;">Immersive family flight preparation through interactive VR simulation.</p>
+                <p id="skydreamer-card-desc" style="opacity: 0.5; font-size: 0.8rem; margin-top: 5px;">Immersive family flight preparation through interactive VR simulation.</p>
             </div>
         </div>
     </div>
@@ -1382,19 +1408,19 @@
     
     <div class="container" id="contact">
         <div class="contact-box glass-card" style="text-align: center; padding: 80px 20px;">
-            <h2 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px;">Let's Collaborate</h2>
+            <h2 id="contact-title" style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px;">Let's Collaborate</h2>
             <p style="font-family: var(--font-mono); color: var(--primary); margin-bottom: 10px;">83 Harbour Street, Sydney, NSW 2000</p>
-            <p style="margin-bottom: 30px; opacity: 0.7;">Phone: 0432130500</p>
+            <p id="contact-phone" style="margin-bottom: 30px; opacity: 0.7;">Phone: 0432130500</p>
             <div class="uni-socials" aria-label="Social links" style="margin-top: 0; margin-bottom: 30px;">
                 <a class="uni-social-link" href="https://www.linkedin.com/in/%E6%B6%A6%E5%93%B2-%E9%A9%AC-004677278?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="Linkedln.png" alt="LinkedIn"></a>
                 <a class="uni-social-link" href="https://www.instagram.com/luoha4luoha?igsh=MW4yY3h5dHIzcWJwbg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
                 <a class="uni-social-link" href="mailto:jamesluoha4@outlook.com" aria-label="Email"><img src="email.png" alt="Email"></a>
             </div>
-            <a href="mailto:james.ma@example.com" class="btn-explore">Send Message</a>
+            <a href="mailto:james.ma@example.com" class="btn-explore" id="contact-send">Send Message</a>
         </div>
     </div>
 
-    <footer style="padding: 60px 20px; text-align: center; font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.3; letter-spacing: 2px;">
+    <footer id="footer-text" style="padding: 60px 20px; text-align: center; font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.3; letter-spacing: 2px;">
         DESIGNED & BUILT BY RUNZHE MA © 2026
     </footer>
 
@@ -1504,9 +1530,16 @@
             requestAnimationFrame(animateCursor);
         }
 
-        const roles = ["INTERACTION DESIGNER", "AI PRODUCT MANAGER", "CREATIVE DEVELOPER", "USER EXPERIENCE DESIGNER", "FRONT_END DEVELOPER"];
+        const roleSets = {
+            en: ["INTERACTION DESIGNER", "AI PRODUCT MANAGER", "CREATIVE DEVELOPER", "USER EXPERIENCE DESIGNER", "FRONT_END DEVELOPER"],
+            zh: ["交互设计师", "AI产品经理", "创意开发者", "用户体验设计师", "前端开发者"]
+        };
+        let currentLang = 'en';
+        let roles = roleSets[currentLang];
         let rIdx = 0, charIdx = 0, del = false;
+        function resetTypewriter(){ rIdx = 0; charIdx = 0; del = false; roles = roleSets[currentLang]; }
         function type() {
+            roles = roleSets[currentLang];
             const current = roles[rIdx];
             const typeElem = document.getElementById('typewriter');
             if(typeElem) {
@@ -1696,6 +1729,236 @@
 
         const navLogo = document.querySelector('.nav-logo');
 
+const i18n = {
+    en: {
+        htmlLang: 'en',
+        navAbout: 'ABOUT', navWork: 'WORK', navContact: 'CONTACT', langBtn: '中', langTitle: '切换到中文',
+        heroExplore: 'Explore',
+        aboutTitle: 'ABOUT <span style="color: var(--primary);">ME</span>',
+        workTitle: 'FEATURED <span style="color: var(--primary);">WORK</span>',
+        implementationTitle: 'Implementation Projects',
+        universityTitle: 'University Projects',
+        contactTitle: "Let's Collaborate",
+        contactPhone: 'Phone: 0432130500',
+        contactSend: 'Send Message',
+        footer: 'DESIGNED & BUILT BY RUNZHE MA © 2026',
+        aboutIntro: `<strong style="color: #fff; font-weight: 700;">Interaction Design and Electric Arts Master’s candidate at USYD</strong>, specializing in intelligent, user-centered products. I bridge <span style="color: var(--primary); font-weight: 700;">UI/UX, AI product management, and XR development</span> to turn complex tech into seamless experiences. Having led end-to-end lifecycles for AI music and health platforms, I thrive on emerging technologies to build solutions that align human needs with business goals.`,
+        songdioCard: 'Redesigning a dynamic, bold interface for multimodal music creation',
+        coomoCard: 'Companion-style interactive software that emphasizes emotional healing',
+        perioguardCard: 'Smart period-care support system with product and spatial planning.',
+        sonairCard: 'Voice-led support experience for assisted daily interaction.',
+        skydreamerCard: 'Immersive family flight preparation through interactive VR simulation.',
+        detailKicker: 'PROJECT DETAIL', detailType: 'TYPE', detailRole: 'MY ROLE', detailLinks: 'LINKS', detailInfo: 'Project Info',
+        mockupShowcase: 'Mockup Showcase', visualOutputs: 'Visual Outputs', nextProject: 'Next Project →', closeText: 'CLOSE',
+        aboutDegree: 'Master of Interaction Design @ USYD<br>Bachelor of Design Computing @ USYD',
+        timeline1Title: 'Hangzhou Xin Ying Tech | AI Product Intern', timeline1Date: 'DEC 2025 - Mar 2026', timeline1Desc: 'Led the end-to-end UX design and front-end development of AI music and music therapy products, conducting market research, defining user needs, and delivering responsive web interfaces for both commercial and government projects.',
+        timeline2Title: 'CRCC Bridge Engineering | Project Assistant', timeline2Date: 'OCT 2025 - DEC 2025', timeline2Desc: 'Managed marketing data analysis and reporting, coordinated weekly business activities, and supported the department head in preparing mid-year performance reports.',
+        timeline3Title: 'Event Host & Volunteer| ADP Center', timeline3Date: 'Feb 2023 - Nov 2023', timeline3Desc: 'Hosted and facilitated student events and orientation programs, supporting over 100 first-year students in their transition to university life.',
+        resumeKicker: 'Resume', resumeRole: 'Interaction Designer / UX Designer', resumeStatementTitle: 'Professional Statement',
+        resumeStatementBody: 'I am an interaction designer with a multidisciplinary background spanning UX design, coding, AI-assisted workflows, and digital product thinking. I enjoy turning complex systems into clear user experiences and combining design sensitivity with practical execution.',
+        resumeContact1: 'Sydney, Australia', resumeContact2: 'USYD Graduate', resumeContact3: 'Interaction Design / Design Computing',
+        resumeEducation: 'Education', resumeExperience: 'Selected Experience', resumeProjects: 'Selected Projects', resumeCapabilities: 'Capabilities', resumeBring: 'What I Bring', resumeFile: 'Resume File',
+        resumeFileDesc: 'If needed, you can still open the original document file directly.', resumeFileLink: 'Open original resume document',
+        resumeEdu1Title: 'Master of Interaction Design — The University of Sydney', resumeEdu1Meta: 'Sydney, Australia', resumeEdu1Desc: 'Focused on interaction systems, service thinking, and human-centered digital experiences across academic and project-based practice.',
+        resumeEdu2Title: 'Bachelor of Design Computing — The University of Sydney', resumeEdu2Meta: 'Sydney, Australia', resumeEdu2Desc: 'Built a foundation in UX, creative technology, digital making, and multidisciplinary design methods.',
+        resumeExp1Title: 'AI-assisted Design and Workflow Practice', resumeExp1Meta: 'Research, prototyping, content systems, coding support', resumeExp1B1: 'Use AI tools to support ideation, workflow structuring, summarisation, design iteration, and technical troubleshooting.', resumeExp1B2: 'Combine design judgment with coding, prompting, and system thinking to improve both efficiency and final quality.', resumeExp1B3: 'Translate abstract concepts into clearer user-facing experiences across portfolio, research, and interactive projects.',
+        resumeProj1Title: 'Songdio', resumeProj1Desc: 'Implementation-focused product and portfolio work spanning web, mobile, and visual presentation of multimodal AI music interaction.',
+        resumeProj2Title: 'Coomo Wellness', resumeProj2Desc: 'Companion-style sound environment concept exploring emotional healing, gentle interaction, and mobile-first experience design.',
+        resumeProj3Title: 'University Projects', resumeProj3Desc: 'PeriodGuard, Sonair Assistant, and SKYDREAMER — projects spanning health tech, AI companions, VR preparation systems, and service-oriented interaction design.',
+        resumeBringB1: 'Strong ability to move between concept development, interface design, and implementation detail.', resumeBringB2: 'Comfort working with both human-centered design questions and technical workflows.', resumeBringB3: 'Experience using AI not just for speed, but as a structured design and research support tool.', resumeBringB4: 'Attention to clarity, interaction quality, and how systems are perceived by real users.'
+    },
+    zh: {
+        htmlLang: 'zh-CN',
+        navAbout: '关于', navWork: '作品', navContact: '联系', langBtn: 'EN', langTitle: 'Switch to English',
+        heroExplore: '进入查看',
+        aboutTitle: '关<span style="color: var(--primary);">于我</span>',
+        workTitle: '精选<span style="color: var(--primary);">作品</span>',
+        implementationTitle: '落地项目',
+        universityTitle: '大学项目',
+        contactTitle: '欢迎联系合作',
+        contactPhone: '电话：0432130500',
+        contactSend: '发送消息',
+        footer: 'RUNZHE MA 设计与开发 © 2026',
+        aboutIntro: `<strong style="color: #fff; font-weight: 700;">悉尼大学交互设计与 Electronic Arts 方向硕士在读</strong>，专注于智能化、以用户为中心的产品体验。我结合 <span style="color: var(--primary); font-weight: 700;">UI/UX、AI 产品管理与 XR 开发</span>，把复杂技术转化为顺畅自然的使用体验。围绕 AI 音乐与健康产品的端到端实践，让我更擅长用新兴技术去连接用户需求与业务目标。`,
+        songdioCard: '为多模态 AI 音乐创作重塑更大胆、更有张力的界面体验',
+        coomoCard: '强调情绪疗愈与陪伴感的互动式 AI 软件概念',
+        perioguardCard: '结合产品与空间规划的智能经期支持系统。',
+        sonairCard: '以语音为引导的辅助型日常支持体验。',
+        skydreamerCard: '通过 VR 互动模拟帮助家庭进行沉浸式出行预演。',
+        detailKicker: '项目详情', detailType: '项目类型', detailRole: '我的角色', detailLinks: '相关链接', detailInfo: '项目信息',
+        mockupShowcase: '效果展示', visualOutputs: '视觉产出', nextProject: '下一个项目 →', closeText: '关闭',
+        aboutDegree: '悉尼大学交互设计硕士<br>悉尼大学设计计算学士',
+        timeline1Title: '杭州新映科技｜AI 产品实习生', timeline1Date: '2025年12月 - 2026年3月', timeline1Desc: '负责 AI 音乐与音乐疗愈产品从用户体验到前端落地的完整设计流程，包含市场调研、用户需求定义，以及面向商业与政府项目的响应式网页交付。',
+        timeline2Title: '中铁大桥工程局｜项目助理', timeline2Date: '2025年10月 - 2025年12月', timeline2Desc: '负责营销数据分析与汇报，协调每周业务活动，并协助部门负责人整理与准备年中绩效报告。',
+        timeline3Title: '活动主持与志愿者｜ADP Center', timeline3Date: '2023年2月 - 2023年11月', timeline3Desc: '主持并协助学生活动与迎新项目，支持 100 余名大一新生顺利完成大学生活的过渡。',
+        resumeKicker: '简历', resumeRole: '交互设计师 / 用户体验设计师', resumeStatementTitle: '个人陈述',
+        resumeStatementBody: '我是一名具有跨学科背景的交互设计师，实践覆盖 UX 设计、编程、AI 辅助工作流与数字产品思维。我擅长把复杂系统转化为清晰的用户体验，并在设计敏感度与实际执行之间建立平衡。',
+        resumeContact1: '澳大利亚，悉尼', resumeContact2: '悉尼大学毕业生', resumeContact3: '交互设计 / 设计计算',
+        resumeEducation: '教育背景', resumeExperience: '精选经历', resumeProjects: '精选项目', resumeCapabilities: '能力标签', resumeBring: '我能带来的价值', resumeFile: '简历文件',
+        resumeFileDesc: '如有需要，你仍然可以直接打开原始简历文件。', resumeFileLink: '打开原始简历文档',
+        resumeEdu1Title: '交互设计硕士 — 悉尼大学', resumeEdu1Meta: '澳大利亚，悉尼', resumeEdu1Desc: '主要聚焦交互系统、服务思维以及在学术和项目实践中的以人为中心的数字体验设计。',
+        resumeEdu2Title: '设计计算学士 — 悉尼大学', resumeEdu2Meta: '澳大利亚，悉尼', resumeEdu2Desc: '建立了 UX、创意技术、数字制作与跨学科设计方法的基础。',
+        resumeExp1Title: 'AI 辅助设计与工作流实践', resumeExp1Meta: '研究、原型、内容系统与技术支持', resumeExp1B1: '使用 AI 工具支持创意发散、工作流搭建、总结归纳、设计迭代与技术排障。', resumeExp1B2: '结合设计判断、代码、提示词与系统思维，同时提升效率与最终质量。', resumeExp1B3: '将抽象概念转化为更清晰、更面向用户的作品、研究与交互体验。',
+        resumeProj1Title: 'Songdio', resumeProj1Desc: '围绕多模态 AI 音乐交互，覆盖网页、移动端和视觉呈现的落地型产品与作品集实践。',
+        resumeProj2Title: 'Coomo Wellness', resumeProj2Desc: '一个以情绪疗愈、温和互动与移动端优先体验为核心的陪伴式声音环境概念。',
+        resumeProj3Title: '大学项目', resumeProj3Desc: '涵盖 PeriodGuard、Sonair Assistant 与 SKYDREAMER，涉及健康科技、AI 陪伴、VR 出行预演与服务导向交互设计。',
+        resumeBringB1: '能够在概念构思、界面设计与实现细节之间灵活切换。', resumeBringB2: '既能处理以人为中心的设计问题，也能适应技术型工作流。', resumeBringB3: '将 AI 视为结构化的设计与研究支持工具，而不只是提速手段。', resumeBringB4: '关注信息清晰度、交互质量，以及系统在真实用户眼中的感知方式。'
+    }
+};
+
+const projectTranslations = {
+    zh: {
+        songdio: {
+            kicker: '落地项目',
+            tag: 'AI / 生成音乐 / 网页与移动端',
+            time: '2025年12月 - 2026年3月',
+            role: '主导UI/UX设计师 & 前端开发',
+            summary: '一个通过响应式产品叙事展示的多模态 AI 音乐体验，涵盖产品样机、移动端界面、宣传视觉与网页展示。',
+            content: `<p>Songdio 是一个多模态 AI 音乐平台，旨在让音乐生成体验更具表现力、更有视觉张力，也更容易在不同设备上探索与使用。这个详情页被组织成一个偏落地实施的案例展示，将产品样机、移动端界面、宣传视觉和网页端体验串联成一条连续的项目叙事。</p><p style="margin-top: 18px;">页面布局刻意保持灵活，让每一种输出内容都能保留其原始比例和视觉特征，而不是被强行塞进统一模版中。这让项目更接近真实作品集展示与交付场景。</p><h4 style="margin-top: 28px; margin-bottom: 12px; font-family: var(--font-mono); letter-spacing: 2px; color: var(--primary);">REFLECTION</h4><p>在 Songdio 项目中，我作为 UX 设计师参与一个已有音乐疗愈产品的迭代。当时产品的主要问题是品牌感不强、市场辨识度不足。我的主要职责是重新设计响应式网页体验，并推动品牌视觉迭代。为了解决这些问题，我重做了视觉风格、梳理了信息架构，并优化了音乐生成与编辑流程。我同时兼顾桌面端和移动端设计，并在多轮沟通与迭代中与团队密切合作。这个项目让我更深刻地理解了品牌、可用性与流程设计如何共同作用，去提升产品的辨识度、清晰度与易用性。</p>`,
+            galleryTitles: ['移动端界面', '宣传视觉', '网页体验'],
+            nextProjectName: null
+        },
+        coomo: {
+            title: 'Coomo Wellness',
+            kicker: '落地项目',
+            tag: 'AI / 疗愈 / 移动端',
+            time: '2026年1月 - 至今',
+            role: 'AI产品设计师',
+            summary: '一个以情绪陪伴为导向的 AI 疗愈概念产品，强调温和的互动语气与移动端体验。',
+            content: `<p>Coomo 是一款围绕温和互动、情感陪伴和日常疗愈仪式设计的 AI 声音环境应用。</p><p style="margin-top: 18px;">它是一款强调情绪疗愈的陪伴式互动软件，通过组合不同类型的音乐与声音内容，为用户提供更具心理支持感和疗愈感的体验。产品目前处于测试阶段。在设计过程中，我也参与了前端实现，主要使用 Swift 与 Xcode。</p><h4 style="margin-top: 28px; margin-bottom: 12px; font-family: var(--font-mono); letter-spacing: 2px; color: var(--primary);">REFLECTION</h4><p>Coomo 是一个新产品概念，诞生于 AI 越来越进入日常生活、而情绪疗愈逐渐成为重要心理需求的背景下。我观察到市面上很多相关产品过于功能化，缺少沉浸感、情感连接和个性化体验，因此希望创造一个更温和、更有陪伴感的产品方向。在这个项目中，我以产品经理的角色参与其中，重点塑造能够真正支持用户情绪的陪伴式体验。我负责信息架构、用户流程、视觉方向、移动端 UI 和交互设计，也参与了 Swift 与 Xcode 的实现过程。这个项目让我进一步确认，以人为中心的设计在构建有意义的数字体验中至关重要。</p>`,
+            galleryTitles: ['移动端界面']
+        },
+        sonair: {
+            title: 'Sonair Assistant',
+            kicker: '大学项目',
+            tag: 'AI健康 / 陪伴 / 可穿戴',
+            time: '大学项目',
+            role: '交互设计师 & 产品设计师',
+            summary: '一个面向未来的 AI 健康陪伴系统，结合可穿戴感知与情绪化支持，服务关注肺部健康的用户。',
+            content: `<p>LungGuard Pro 是一个面向未来的 AI 健康陪伴项目，主要针对年轻吸烟者和关注肺部健康的人群，聚焦于日常生活中常被忽视的咳嗽行为。通过可穿戴的咳嗽感知项链与带有情绪支持能力的移动端应用，LungGuard 帮助用户监测咳嗽模式并获得实时洞察，同时由智能 AI 助手提供更具情感支持性的陪伴，帮助用户逐步戒烟并恢复肺部健康。</p>`,
+            galleryTitles: ['界面展示'],
+            nextProjectName: 'PeriodGuard'
+        },
+        skydreamer: {
+            kicker: '大学项目',
+            tag: 'VR / 家庭出行 / 体验设计',
+            time: '大学项目',
+            role: '交互设计师 & 体验设计师',
+            summary: '一个基于 VR 的飞行准备系统，帮助亲子家庭在出发前预演乘机过程。',
+            content: `<p>SkyDreamer 是一个为带孩子出行的家长设计的 VR 飞行准备系统。它结合飞行规划、儿童准备和沉浸式模拟，帮助家庭在出发前预演旅途中关键阶段，例如机场流程和机上体验。</p><p style="margin-top: 18px;">这个项目旨在降低出行焦虑，提升家长的掌控感，也帮助孩子更早熟悉陌生的旅行环境。通过把出行准备转化为互动式 VR 体验，SkyDreamer 探索了沉浸式技术如何支持更顺畅、更以家庭为中心的航空出行体验。</p>`,
+            galleryTitles: ['VR 界面'],
+            nextProjectName: 'Sonair Assistant'
+        },
+        perioguard: {
+            title: 'PeriodGuard',
+            kicker: '大学项目',
+            tag: '健康科技 / 产品 / 用户体验',
+            time: '大学项目',
+            role: '交互设计师 & 产品设计师',
+            summary: '一个整合式口腔健康解决方案，帮助学生进行早期识别、预防护理与日常牙龈健康管理。',
+            content: `<p>PerioGuard 是一个整合式口腔健康解决方案，旨在帮助学生尽早识别牙周疾病迹象，并在日常生活中建立更有效的预防护理方式。项目结合了智能实体原型与数字化移动平台，使用户能够监测口腔状态、获得刷牙辅助、查看健康报告，并提升对牙龈健康的认知。</p><p style="margin-top: 18px;">项目基于定性与定量用户研究展开，回应了用户对便捷、可负担且友好的牙周护理工具的需求。通过引入 AI 辅助分析、数据追踪与健康教育，PerioGuard 旨在推动早期干预，并降低年轻人患牙周疾病的风险。</p>`,
+            galleryTitles: ['移动端界面', '产品平面图'],
+            nextProjectName: 'SKYDREAMER'
+        }
+    }
+};
+
+function getProjectByLang(id){
+    const base = projects[id];
+    if(currentLang === 'en' || !projectTranslations[currentLang] || !projectTranslations[currentLang][id]) return base;
+    const patch = projectTranslations[currentLang][id];
+    const merged = {...base, ...patch};
+    if(base.gallerySections && patch.galleryTitles){
+        merged.gallerySections = base.gallerySections.map((section, idx) => ({ ...section, title: patch.galleryTitles[idx] || section.title }));
+    }
+    if(base.nextProject && patch.nextProjectName){
+        merged.nextProject = { ...base.nextProject, name: patch.nextProjectName };
+    }
+    return merged;
+}
+
+function applyLanguage(lang){
+    currentLang = lang;
+    document.documentElement.lang = i18n[lang].htmlLang;
+    const t = i18n[lang];
+    const map = {
+        'nav-about': t.navAbout,
+        'nav-work': t.navWork,
+        'nav-contact': t.navContact,
+        'hero-explore': t.heroExplore,
+        'implementation-title': t.implementationTitle,
+        'university-title': t.universityTitle,
+        'contact-title': t.contactTitle,
+        'contact-phone': t.contactPhone,
+        'contact-send': t.contactSend,
+        'footer-text': t.footer,
+        'songdio-card-desc': t.songdioCard,
+        'coomo-card-desc': t.coomoCard,
+        'perioguard-card-desc': t.perioguardCard,
+        'sonair-card-desc': t.sonairCard,
+        'skydreamer-card-desc': t.skydreamerCard,
+        'label-type': t.detailType,
+        'label-role': t.detailRole,
+        'label-links': t.detailLinks,
+        'project-info-title': t.detailInfo,
+        'resume-close-btn': t.closeText,
+        'resume-kicker': t.resumeKicker,
+        'resume-role-text': t.resumeRole,
+        'resume-statement-title': t.resumeStatementTitle,
+        'resume-statement-body': t.resumeStatementBody,
+        'resume-contact-1': t.resumeContact1,
+        'resume-contact-2': t.resumeContact2,
+        'resume-contact-3': t.resumeContact3,
+        'resume-education-title': t.resumeEducation,
+        'resume-experience-title': t.resumeExperience,
+        'resume-projects-title': t.resumeProjects,
+        'resume-capabilities-title': t.resumeCapabilities,
+        'resume-bring-title': t.resumeBring,
+        'resume-file-title': t.resumeFile,
+        'resume-file-desc': t.resumeFileDesc,
+        'resume-file-link': t.resumeFileLink,
+        'resume-edu-1-title': t.resumeEdu1Title,
+        'resume-edu-1-meta': t.resumeEdu1Meta,
+        'resume-edu-1-desc': t.resumeEdu1Desc,
+        'resume-edu-2-title': t.resumeEdu2Title,
+        'resume-edu-2-meta': t.resumeEdu2Meta,
+        'resume-edu-2-desc': t.resumeEdu2Desc,
+        'resume-exp-1-title': t.resumeExp1Title,
+        'resume-exp-1-meta': t.resumeExp1Meta,
+        'resume-exp-1-b1': t.resumeExp1B1,
+        'resume-exp-1-b2': t.resumeExp1B2,
+        'resume-exp-1-b3': t.resumeExp1B3,
+        'resume-proj-1-title': t.resumeProj1Title,
+        'resume-proj-1-desc': t.resumeProj1Desc,
+        'resume-proj-2-title': t.resumeProj2Title,
+        'resume-proj-2-desc': t.resumeProj2Desc,
+        'resume-proj-3-title': t.resumeProj3Title,
+        'resume-proj-3-desc': t.resumeProj3Desc,
+        'resume-bring-b1': t.resumeBringB1,
+        'resume-bring-b2': t.resumeBringB2,
+        'resume-bring-b3': t.resumeBringB3,
+        'resume-bring-b4': t.resumeBringB4,
+        'timeline-1-title': t.timeline1Title,
+        'timeline-1-date': t.timeline1Date,
+        'timeline-1-desc': t.timeline1Desc,
+        'timeline-2-title': t.timeline2Title,
+        'timeline-2-date': t.timeline2Date,
+        'timeline-2-desc': t.timeline2Desc,
+        'timeline-3-title': t.timeline3Title,
+        'timeline-3-date': t.timeline3Date,
+        'timeline-3-desc': t.timeline3Desc
+    };
+    Object.entries(map).forEach(([id,val])=>{ const el=document.getElementById(id); if(el) el.innerText = val; });
+    const aboutTitle=document.getElementById('section-about-title'); if(aboutTitle) aboutTitle.innerHTML=t.aboutTitle;
+    const workTitle=document.getElementById('section-work-title'); if(workTitle) workTitle.innerHTML=t.workTitle;
+    const aboutIntro=document.getElementById('about-intro-text'); if(aboutIntro) aboutIntro.innerHTML=t.aboutIntro;
+    const degreeText=document.getElementById('about-degree-text'); if(degreeText) degreeText.innerHTML=t.aboutDegree;
+    const langBtn=document.getElementById('lang-toggle'); if(langBtn){ langBtn.innerText=t.langBtn; langBtn.title=t.langTitle; langBtn.setAttribute('aria-label',t.langTitle); }
+    resetTypewriter();
+    const activeProject = document.getElementById('project-modal')?.classList.contains('active') ? document.getElementById('project-modal').dataset.projectId : null;
+    if(activeProject) openModal(activeProject);
+}
+
 // 点击 Logo 平滑滚动到顶部
 if (navLogo) {
     navLogo.addEventListener("click", () => {
@@ -1715,7 +1978,7 @@ if (navLogo) {
     }
 
     target.innerHTML = `
-        <h3 class="detail-section-title">Mockup Showcase</h3>
+        <h3 class="detail-section-title">${i18n[currentLang].mockupShowcase}</h3>
         <div class="mockup-grid">
             ${mockups.map(item => `
                 <div class="mockup-frame ${item.className || 'full'}">
@@ -1735,7 +1998,7 @@ function renderGallerySections(sections = []) {
     }
 
     target.innerHTML = `
-        <h3 class="detail-section-title">Visual Outputs</h3>
+        <h3 class="detail-section-title">${i18n[currentLang].visualOutputs}</h3>
         ${sections.map(section => `
             <div class="gallery-group">
                 <div class="gallery-group-title">${section.title}</div>
@@ -1750,7 +2013,7 @@ function renderGallerySections(sections = []) {
         ${sections.nextProject ? `
             <div class="detail-section" style="margin-top: 12px;">
                 <a class="next-project-link" href="javascript:void(0)" onclick="openModal('${sections.nextProject.id}')">
-                    <span class="next-project-label">Next Project &rarr;</span>
+                    <span class="next-project-label">${i18n[currentLang].nextProject}</span>
                     <span class="next-project-name">${sections.nextProject.name}</span>
                 </a>
             </div>
@@ -1759,10 +2022,10 @@ function renderGallerySections(sections = []) {
 }
 
         function openModal(id) {
-    const p = projects[id];
+    const p = getProjectByLang(id);
     if(!p) return;
 
-    document.getElementById('m-kicker').innerText = p.kicker || 'Project Detail';
+    document.getElementById('m-kicker').innerText = p.kicker || i18n[currentLang].detailKicker;
     document.getElementById('m-title').innerText = p.title;
     document.getElementById('m-tag').innerText = p.tag;
     document.getElementById('m-summary').innerText = p.summary || '';
@@ -1782,7 +2045,13 @@ function renderGallerySections(sections = []) {
     renderGallerySections(gallerySections);
 
     const modal = document.getElementById('project-modal');
+    const closeBtn = modal.querySelector('.modal-close');
+    if(closeBtn) closeBtn.innerText = i18n[currentLang].closeText;
+    modal.dataset.projectId = id;
     modal.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    const modalBody = modal.querySelector('.modal-body');
+    if(modalBody) modalBody.scrollTo({ top: 0, behavior: 'auto' });
     setTimeout(() => modal.classList.add('active'), 10);
     document.body.style.overflow = 'hidden';
 }
@@ -1800,6 +2069,8 @@ function renderGallerySections(sections = []) {
             const modal = document.getElementById('resume-modal');
             if(!modal) return;
             modal.style.display = 'block';
+            const modalBody = modal.querySelector('.modal-body');
+            if(modalBody) modalBody.scrollTo({ top: 0, behavior: 'auto' });
             setTimeout(() => modal.classList.add('active'), 10);
             document.body.style.overflow = 'hidden';
         }
@@ -1816,6 +2087,13 @@ function renderGallerySections(sections = []) {
 
         window.addEventListener('resize', init);
         init(); render(); type(); animateCursor();
+        const langToggle = document.getElementById('lang-toggle');
+        if (langToggle) {
+            langToggle.addEventListener('click', () => {
+                applyLanguage(currentLang === 'en' ? 'zh' : 'en');
+            });
+        }
+        applyLanguage('en');
 
 const uniGrid = document.querySelector('.uni-grid');
     const uniCards = document.querySelectorAll('.uni-card');
